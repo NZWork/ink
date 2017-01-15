@@ -1,2 +1,10 @@
 # ink
-basic markdown translate service of tiki
+Basic markdown parsing service of tiki
+
+## Dependencies
+
+### Markdown translate
+
+* blackfriday
+* bluemonday
+
