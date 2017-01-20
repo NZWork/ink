@@ -7,34 +7,55 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"runtime"
+	//"time"
 )
 
 var rootPath = "test"
 
-func parseMarkdownToHTML(md []byte, f string, fi chan bool) {
-	unsafe := blackfriday.MarkdownCommon(md)
-	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	ioutil.WriteFile(f+".html", html, 0644)
-	fi <- true
+func mdStream() {
+	files, _ := filepath.Glob(filepath.Join(rootPath, "*.md"))
+	fmt.Printf("parsing %d files\n", len(files))
+
+	worker := runtime.NumCPU()
+	runtime.GOMAXPROCS(worker)
+
+	rc := make(chan []byte, worker)
+	wc := make(chan []byte, worker)
+	done := make(chan bool, len(files))
+
+	go mdReadStream(files, rc)
+	go mdWriteStream(wc, done)
+
+	for i := 0; i < worker*2; i++ {
+		go mdParseStream(rc, wc)
+	}
+	for i := 0; i < len(files); i++ {
+		<-done
+	}
+
 }
 
-func readMarkdownFiles() {
-	files, _ := filepath.Glob(filepath.Join(rootPath, "*.md"))
-
-	c := len(files)
-	fi := make(chan bool, c)
-
-	fmt.Printf("%d files in total", c)
-
+func mdReadStream(files []string, readChan chan []byte) {
 	for _, f := range files {
 		md, _ := ioutil.ReadFile(f)
-		go parseMarkdownToHTML(md, f, fi)
+		readChan <- md
+		//fmt.Printf("rf @ %v\n", time.Now().Nanosecond())
 	}
-	for i := 0; i < c; i++ {
-		<-fi
+	close(readChan)
+}
+
+func mdParseStream(readChan chan []byte, writeChan chan []byte) {
+	for c := range readChan {
+		//fmt.Printf("cf @ %v\n", time.Now().Nanosecond())
+		writeChan <- bluemonday.UGCPolicy().SanitizeBytes(blackfriday.MarkdownCommon(c))
 	}
 }
 
-func mdReadStream()  {}
-func mdParseStream() {}
-func mdWriteStream() {}
+func mdWriteStream(writeChan chan []byte, d chan bool) {
+	for c := range writeChan {
+		//fmt.Printf("wf @ %v\n", time.Now().Nanosecond())
+		ioutil.WriteFile("test.html", c, 0644)
+		d <- true
+	}
+}

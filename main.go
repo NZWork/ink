@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	start := time.Now().Nanosecond()
-	readMarkdownFiles()
-	fmt.Printf("\ntime %vms\n", float64(time.Now().Nanosecond()-start)/1000/1000)
+	start := time.Now().UnixNano()
+	mdStream()
+	fmt.Printf("time %vms\n", float64(time.Now().UnixNano()-start)/1000/1000)
 }
