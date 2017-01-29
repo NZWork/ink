@@ -53,3 +53,362 @@ write file 126012  nanosecond
 110 files in total
 time 56.526073m
 ```
+
+```
+3.14s of 3.30s total (95.15%)
+Dropped 64 nodes (cum <= 0.02s)
+Showing top 80 nodes out of 172 (cum >= 0.17s)
+----------------------------------------------------------|-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------|-------------
+                                             0.94s   100% |   runtime.systemstack
+     0.94s 28.48% 28.48%      0.94s 28.48%                | runtime.mach_semaphore_wait
+----------------------------------------------------------|-------------
+                                             0.15s   100% |   runtime.gcFlushBgCredit
+     0.75s 22.73% 51.21%      0.75s 22.73%                | runtime.usleep
+----------------------------------------------------------|-------------
+                                             0.33s 94.29% |   os.OpenFile
+                                             0.02s  5.71% |   os.(*File).Stat
+     0.40s 12.12% 63.33%      0.40s 12.12%                | syscall.Syscall
+----------------------------------------------------------|-------------
+                                             0.19s   100% |   runtime.systemstack
+     0.19s  5.76% 69.09%      0.19s  5.76%                | runtime.mach_semaphore_timedwait
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   runtime.mallocgc
+     0.09s  2.73% 71.82%      0.09s  2.73%                | runtime.memclr
+----------------------------------------------------------|-------------
+     0.08s  2.42% 74.24%      0.08s  2.42%                | runtime.mach_semaphore_signal
+----------------------------------------------------------|-------------
+                                             0.15s   100% |   bytes.makeSlice
+     0.08s  2.42% 76.67%      0.55s 16.67%                | runtime.mallocgc
+                                             0.08s 53.33% |   runtime.gcAssistAlloc
+                                             0.04s 26.67% |   runtime.stkbucket
+                                             0.03s 20.00% |   runtime.memclr
+----------------------------------------------------------|-------------
+                                             0.08s   100% |   strings.IndexAny
+     0.08s  2.42% 79.09%      0.09s  2.73%                | runtime.stringiter2
+----------------------------------------------------------|-------------
+                                             0.10s 66.67% |   golang.org/x/net/html.EscapeString
+                                             0.05s 33.33% |   golang.org/x/net/html.escape
+     0.07s  2.12% 81.21%      0.15s  4.55%                | strings.IndexAny
+                                             0.08s   100% |   runtime.stringiter2
+----------------------------------------------------------|-------------
+                                             0.01s   100% |   runtime.concatstrings
+     0.06s  1.82% 83.03%      0.06s  1.82%                | runtime.memmove
+----------------------------------------------------------|-------------
+                                             0.04s   100% |   runtime.mallocgc
+     0.04s  1.21% 84.24%      0.04s  1.21%                | runtime.stkbucket
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   github.com/russross/blackfriday.(*Html).Smartypants
+     0.03s  0.91% 85.15%      0.04s  1.21%                | github.com/russross/blackfriday.attrEscape
+                                             0.01s   100% |   bytes.(*Buffer).Write
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   runtime.systemstack
+     0.03s  0.91% 86.06%      0.03s  0.91%                | nanotime
+----------------------------------------------------------|-------------
+                                             0.01s 33.33% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+                                             0.01s 33.33% |   golang.org/x/net/html.(*Tokenizer).Token
+                                             0.01s 33.33% |   runtime.pcvalue
+     0.03s  0.91% 86.97%      0.03s  0.91%                | runtime.duffcopy
+----------------------------------------------------------|-------------
+                                             0.02s 50.00% |   github.com/microcosm-cc/bluemonday.(*Policy).AllowElements
+                                             0.02s 50.00% |   github.com/microcosm-cc/bluemonday.(*attrPolicyBuilder).OnElements
+     0.03s  0.91% 87.88%      0.05s  1.52%                | runtime.mapassign1
+----------------------------------------------------------|-------------
+                                             0.01s   100% |   runtime.systemstack
+     0.03s  0.91% 88.79%      0.04s  1.21%                | runtime.scanobject
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   runtime.systemstack
+     0.03s  0.91% 89.70%      0.11s  3.33%                | runtime.scanstack
+                                             0.07s   100% |   runtime.gentraceback
+----------------------------------------------------------|-------------
+                                             0.12s 70.59% |   bytes.(*Buffer).Write
+                                             0.05s 29.41% |   bytes.(*Buffer).WriteString
+     0.02s  0.61% 90.30%      0.17s  5.15%                | bytes.(*Buffer).grow
+                                             0.15s   100% |   bytes.makeSlice
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   regexp.Compile
+     0.02s  0.61% 90.91%      0.02s  0.61%                | regexp/syntax.ranges.Less
+----------------------------------------------------------|-------------
+                                                 0   100% |   runtime.systemstack
+     0.02s  0.61% 91.52%      0.18s  5.45%                | runtime.gcFlushBgCredit
+                                             0.15s   100% |   runtime.usleep
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   runtime.pcvalue
+     0.02s  0.61% 92.12%      0.02s  0.61%                | runtime.step
+----------------------------------------------------------|-------------
+                                             0.46s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).SanitizeBytes
+     0.01s   0.3% 92.42%      0.46s 13.94%                | github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+                                             0.22s 51.16% |   golang.org/x/net/html.Token.String
+                                             0.10s 23.26% |   golang.org/x/net/html.(*Tokenizer).Token
+                                             0.07s 16.28% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+                                             0.03s  6.98% |   bytes.(*Buffer).WriteString
+                                             0.01s  2.33% |   runtime.duffcopy
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   github.com/russross/blackfriday.(*parser).table
+     0.01s   0.3% 92.73%      0.02s  0.61%                | github.com/russross/blackfriday.(*parser).tableHeader
+                                             0.01s   100% |   github.com/russross/blackfriday.(*parser).tableRow
+----------------------------------------------------------|-------------
+                                             0.10s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+     0.01s   0.3% 93.03%      0.10s  3.03%                | golang.org/x/net/html.(*Tokenizer).Token
+                                             0.01s   100% |   runtime.duffcopy
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   golang.org/x/net/html.Token.String
+     0.01s   0.3% 93.33%      0.03s  0.91%                | runtime.concatstrings
+                                             0.01s   100% |   runtime.memmove
+----------------------------------------------------------|-------------
+                                             0.08s   100% |   runtime.mallocgc
+     0.01s   0.3% 93.64%      0.08s  2.42%                | runtime.gcAssistAlloc
+                                             0.06s   100% |   runtime.systemstack
+----------------------------------------------------------|-------------
+                                             0.07s   100% |   runtime.scanstack
+     0.01s   0.3% 93.94%      0.09s  2.73%                | runtime.gentraceback
+                                             0.04s 66.67% |   runtime.pcvalue
+                                             0.02s 33.33% |   runtime.scanblock
+----------------------------------------------------------|-------------
+                                             0.04s   100% |   runtime.gentraceback
+     0.01s   0.3% 94.24%      0.04s  1.21%                | runtime.pcvalue
+                                             0.02s 66.67% |   runtime.step
+                                             0.01s 33.33% |   runtime.duffcopy
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   runtime.gentraceback
+     0.01s   0.3% 94.55%      0.02s  0.61%                | runtime.scanblock
+----------------------------------------------------------|-------------
+     0.01s   0.3% 94.85%      0.95s 28.79%                | runtime.semasleep
+                                             0.94s   100% |   runtime.systemstack
+----------------------------------------------------------|-------------
+                                             0.94s 94.00% |   runtime.semasleep
+                                             0.06s  6.00% |   runtime.gcAssistAlloc
+     0.01s   0.3% 95.15%      1.48s 44.85%                | runtime.systemstack
+                                             0.94s 74.31% |   runtime.mach_semaphore_wait
+                                             0.19s 15.02% |   runtime.mach_semaphore_timedwait
+                                             0.09s  7.11% |   runtime.scanstack
+                                             0.03s  2.37% |   nanotime
+                                             0.01s  0.85% |   runtime.scanobject
+                                                 0  0.34% |   runtime.gcFlushBgCredit
+----------------------------------------------------------|-------------
+                                             0.04s 36.36% |   github.com/russross/blackfriday.(*Html).Smartypants
+                                             0.04s 36.36% |   github.com/russross/blackfriday.expandTabs
+                                             0.02s 18.18% |   github.com/russross/blackfriday.(*parser).listItem
+                                             0.01s  9.09% |   github.com/russross/blackfriday.attrEscape
+         0     0% 95.15%      0.12s  3.64%                | bytes.(*Buffer).Write
+                                             0.12s   100% |   bytes.(*Buffer).grow
+----------------------------------------------------------|-------------
+                                             0.03s 60.00% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+                                             0.01s 20.00% |   golang.org/x/net/html.Token.tagString
+                                             0.01s 20.00% |   golang.org/x/net/html.escape
+         0     0% 95.15%      0.05s  1.52%                | bytes.(*Buffer).WriteString
+                                             0.05s   100% |   bytes.(*Buffer).grow
+----------------------------------------------------------|-------------
+                                             0.15s   100% |   bytes.(*Buffer).grow
+         0     0% 95.15%      0.15s  4.55%                | bytes.makeSlice
+                                             0.15s   100% |   runtime.mallocgc
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   github.com/microcosm-cc/bluemonday.UGCPolicy
+         0     0% 95.15%      0.02s  0.61%                | github.com/microcosm-cc/bluemonday.(*Policy).AllowElements
+                                             0.02s   100% |   runtime.mapassign1
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   github.com/microcosm-cc/bluemonday.UGCPolicy
+         0     0% 95.15%      0.02s  0.61%                | github.com/microcosm-cc/bluemonday.(*Policy).AllowTables
+                                             0.01s   100% |   github.com/microcosm-cc/bluemonday.(*attrPolicyBuilder).OnElements
+----------------------------------------------------------|-------------
+                                             0.46s   100% |   ink.mdParseStream
+         0     0% 95.15%      0.46s 13.94%                | github.com/microcosm-cc/bluemonday.(*Policy).SanitizeBytes
+                                             0.46s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+----------------------------------------------------------|-------------
+                                             0.07s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+         0     0% 95.15%      0.07s  2.12%                | github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+                                             0.02s 66.67% |   github.com/microcosm-cc/bluemonday.(*Policy).validURL
+                                             0.01s 33.33% |   net/url.Parse
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+         0     0% 95.15%      0.02s  0.61%                | github.com/microcosm-cc/bluemonday.(*Policy).validURL
+                                             0.02s   100% |   net/url.Parse
+----------------------------------------------------------|-------------
+                                             0.01s 50.00% |   github.com/microcosm-cc/bluemonday.(*Policy).AllowTables
+                                             0.01s 50.00% |   github.com/microcosm-cc/bluemonday.UGCPolicy
+         0     0% 95.15%      0.02s  0.61%                | github.com/microcosm-cc/bluemonday.(*attrPolicyBuilder).OnElements
+                                             0.02s   100% |   runtime.mapassign1
+----------------------------------------------------------|-------------
+                                             0.22s   100% |   ink.mdParseStream
+         0     0% 95.15%      0.22s  6.67%                | github.com/microcosm-cc/bluemonday.UGCPolicy
+                                             0.16s 76.19% |   regexp.MustCompile
+                                             0.02s  9.52% |   github.com/microcosm-cc/bluemonday.(*Policy).AllowElements
+                                             0.02s  9.52% |   github.com/microcosm-cc/bluemonday.(*Policy).AllowTables
+                                             0.01s  4.76% |   github.com/microcosm-cc/bluemonday.(*attrPolicyBuilder).OnElements
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   github.com/russross/blackfriday.(*parser).prefixHeader
+         0     0% 95.15%      0.03s  0.91%                | github.com/russross/blackfriday.(*Html).Header
+                                             0.02s   100% |   github.com/russross/blackfriday.(*parser).prefixHeader.func1
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   github.com/russross/blackfriday.(*parser).list
+         0     0% 95.15%      0.09s  2.73%                | github.com/russross/blackfriday.(*Html).List
+                                             0.09s   100% |   github.com/russross/blackfriday.(*parser).list.func1
+----------------------------------------------------------|-------------
+                                             0.13s   100% |   github.com/russross/blackfriday.(*parser).inline
+         0     0% 95.15%      0.13s  3.94%                | github.com/russross/blackfriday.(*Html).NormalText
+                                             0.13s   100% |   github.com/russross/blackfriday.(*Html).Smartypants
+----------------------------------------------------------|-------------
+                                             0.05s   100% |   github.com/russross/blackfriday.(*parser).renderParagraph
+         0     0% 95.15%      0.05s  1.52%                | github.com/russross/blackfriday.(*Html).Paragraph
+                                             0.05s   100% |   github.com/russross/blackfriday.(*parser).renderParagraph.func1
+----------------------------------------------------------|-------------
+                                             0.13s   100% |   github.com/russross/blackfriday.(*Html).NormalText
+         0     0% 95.15%      0.13s  3.94%                | github.com/russross/blackfriday.(*Html).Smartypants
+                                             0.04s 57.14% |   bytes.(*Buffer).Write
+                                             0.03s 42.86% |   github.com/russross/blackfriday.attrEscape
+----------------------------------------------------------|-------------
+                                             0.24s 88.89% |   github.com/russross/blackfriday.secondPass
+                                             0.03s 11.11% |   github.com/russross/blackfriday.(*parser).quote
+         0     0% 95.15%      0.24s  7.27%                | github.com/russross/blackfriday.(*parser).block
+                                             0.09s 39.13% |   github.com/russross/blackfriday.(*parser).list
+                                             0.06s 26.09% |   github.com/russross/blackfriday.(*parser).paragraph
+                                             0.05s 21.74% |   github.com/russross/blackfriday.(*parser).table
+                                             0.03s 13.04% |   github.com/russross/blackfriday.(*parser).prefixHeader
+----------------------------------------------------------|-------------
+                                             0.07s 46.67% |   github.com/russross/blackfriday.(*parser).listItem
+                                             0.05s 33.33% |   github.com/russross/blackfriday.(*parser).renderParagraph.func1
+                                             0.02s 13.33% |   github.com/russross/blackfriday.(*parser).prefixHeader.func1
+                                             0.01s  6.67% |   github.com/russross/blackfriday.(*parser).tableRow
+         0     0% 95.15%      0.15s  4.55%                | github.com/russross/blackfriday.(*parser).inline
+                                             0.13s   100% |   github.com/russross/blackfriday.(*Html).NormalText
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   github.com/russross/blackfriday.(*parser).block
+         0     0% 95.15%      0.09s  2.73%                | github.com/russross/blackfriday.(*parser).list
+                                             0.09s   100% |   github.com/russross/blackfriday.(*Html).List
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   github.com/russross/blackfriday.(*Html).List
+         0     0% 95.15%      0.09s  2.73%                | github.com/russross/blackfriday.(*parser).list.func1
+                                             0.09s   100% |   github.com/russross/blackfriday.(*parser).listItem
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   github.com/russross/blackfriday.(*parser).list.func1
+         0     0% 95.15%      0.09s  2.73%                | github.com/russross/blackfriday.(*parser).listItem
+                                             0.07s 77.78% |   github.com/russross/blackfriday.(*parser).inline
+                                             0.02s 22.22% |   bytes.(*Buffer).Write
+----------------------------------------------------------|-------------
+                                             0.06s   100% |   github.com/russross/blackfriday.(*parser).block
+         0     0% 95.15%      0.06s  1.82%                | github.com/russross/blackfriday.(*parser).paragraph
+                                             0.06s   100% |   github.com/russross/blackfriday.(*parser).renderParagraph
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   github.com/russross/blackfriday.(*parser).block
+         0     0% 95.15%      0.03s  0.91%                | github.com/russross/blackfriday.(*parser).prefixHeader
+                                             0.03s   100% |   github.com/russross/blackfriday.(*Html).Header
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   github.com/russross/blackfriday.(*Html).Header
+         0     0% 95.15%      0.02s  0.61%                | github.com/russross/blackfriday.(*parser).prefixHeader.func1
+                                             0.02s   100% |   github.com/russross/blackfriday.(*parser).inline
+----------------------------------------------------------|-------------
+         0     0% 95.15%      0.03s  0.91%                | github.com/russross/blackfriday.(*parser).quote
+                                             0.03s   100% |   github.com/russross/blackfriday.(*parser).block
+----------------------------------------------------------|-------------
+                                             0.06s   100% |   github.com/russross/blackfriday.(*parser).paragraph
+         0     0% 95.15%      0.06s  1.82%                | github.com/russross/blackfriday.(*parser).renderParagraph
+                                             0.05s   100% |   github.com/russross/blackfriday.(*Html).Paragraph
+----------------------------------------------------------|-------------
+                                             0.05s   100% |   github.com/russross/blackfriday.(*Html).Paragraph
+         0     0% 95.15%      0.05s  1.52%                | github.com/russross/blackfriday.(*parser).renderParagraph.func1
+                                             0.05s   100% |   github.com/russross/blackfriday.(*parser).inline
+----------------------------------------------------------|-------------
+                                             0.05s   100% |   github.com/russross/blackfriday.(*parser).block
+         0     0% 95.15%      0.05s  1.52%                | github.com/russross/blackfriday.(*parser).table
+                                             0.02s 50.00% |   github.com/russross/blackfriday.(*parser).tableHeader
+                                             0.02s 50.00% |   github.com/russross/blackfriday.(*parser).tableRow
+----------------------------------------------------------|-------------
+                                             0.02s 66.67% |   github.com/russross/blackfriday.(*parser).table
+                                             0.01s 33.33% |   github.com/russross/blackfriday.(*parser).tableHeader
+         0     0% 95.15%      0.03s  0.91%                | github.com/russross/blackfriday.(*parser).tableRow
+                                             0.01s   100% |   github.com/russross/blackfriday.(*parser).inline
+----------------------------------------------------------|-------------
+                                             0.29s   100% |   ink.mdParseStream
+         0     0% 95.15%      0.29s  8.79%                | github.com/russross/blackfriday.MarkdownCommon
+                                             0.29s   100% |   github.com/russross/blackfriday.MarkdownOptions
+----------------------------------------------------------|-------------
+                                             0.29s   100% |   github.com/russross/blackfriday.MarkdownCommon
+         0     0% 95.15%      0.29s  8.79%                | github.com/russross/blackfriday.MarkdownOptions
+                                             0.24s 85.71% |   github.com/russross/blackfriday.secondPass
+                                             0.04s 14.29% |   github.com/russross/blackfriday.firstPass
+----------------------------------------------------------|-------------
+                                             0.04s   100% |   github.com/russross/blackfriday.firstPass
+         0     0% 95.15%      0.04s  1.21%                | github.com/russross/blackfriday.expandTabs
+                                             0.04s   100% |   bytes.(*Buffer).Write
+----------------------------------------------------------|-------------
+                                             0.04s   100% |   github.com/russross/blackfriday.MarkdownOptions
+         0     0% 95.15%      0.04s  1.21%                | github.com/russross/blackfriday.firstPass
+                                             0.04s   100% |   github.com/russross/blackfriday.expandTabs
+----------------------------------------------------------|-------------
+                                             0.24s   100% |   github.com/russross/blackfriday.MarkdownOptions
+         0     0% 95.15%      0.24s  7.27%                | github.com/russross/blackfriday.secondPass
+                                             0.24s   100% |   github.com/russross/blackfriday.(*parser).block
+----------------------------------------------------------|-------------
+                                             0.15s   100% |   golang.org/x/net/html.Token.String
+         0     0% 95.15%      0.15s  4.55%                | golang.org/x/net/html.EscapeString
+                                             0.10s 71.43% |   strings.IndexAny
+                                             0.04s 28.57% |   golang.org/x/net/html.escape
+----------------------------------------------------------|-------------
+                                             0.22s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+         0     0% 95.15%      0.22s  6.67%                | golang.org/x/net/html.Token.String
+                                             0.15s 68.18% |   golang.org/x/net/html.EscapeString
+                                             0.04s 18.18% |   golang.org/x/net/html.Token.tagString
+                                             0.03s 13.64% |   runtime.concatstrings
+----------------------------------------------------------|-------------
+                                             0.04s   100% |   golang.org/x/net/html.Token.String
+         0     0% 95.15%      0.04s  1.21%                | golang.org/x/net/html.Token.tagString
+                                             0.02s 66.67% |   golang.org/x/net/html.escape
+                                             0.01s 33.33% |   bytes.(*Buffer).WriteString
+----------------------------------------------------------|-------------
+                                             0.04s 66.67% |   golang.org/x/net/html.EscapeString
+                                             0.02s 33.33% |   golang.org/x/net/html.Token.tagString
+         0     0% 95.15%      0.06s  1.82%                | golang.org/x/net/html.escape
+                                             0.05s 83.33% |   strings.IndexAny
+                                             0.01s 16.67% |   bytes.(*Buffer).WriteString
+----------------------------------------------------------|-------------
+         0     0% 95.15%      1.33s 40.30%                | ink.mdParseStream
+                                             0.46s 34.59% |   github.com/microcosm-cc/bluemonday.(*Policy).SanitizeBytes
+                                             0.36s 27.07% |   io/ioutil.WriteFile
+                                             0.29s 21.80% |   github.com/russross/blackfriday.MarkdownCommon
+                                             0.22s 16.54% |   github.com/microcosm-cc/bluemonday.UGCPolicy
+----------------------------------------------------------|-------------
+         0     0% 95.15%      0.03s  0.91%                | ink.mdReadStream
+                                             0.03s   100% |   io/ioutil.ReadFile
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   ink.mdReadStream
+         0     0% 95.15%      0.03s  0.91%                | io/ioutil.ReadFile
+                                             0.02s   100% |   os.(*File).Stat
+----------------------------------------------------------|-------------
+                                             0.36s   100% |   ink.mdParseStream
+         0     0% 95.15%      0.36s 10.91%                | io/ioutil.WriteFile
+                                             0.33s 91.67% |   os.OpenFile
+                                             0.03s  8.33% |   os.(*File).Write
+----------------------------------------------------------|-------------
+                                             0.02s 66.67% |   github.com/microcosm-cc/bluemonday.(*Policy).validURL
+                                             0.01s 33.33% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+         0     0% 95.15%      0.03s  0.91%                | net/url.Parse
+                                             0.03s   100% |   net/url.parse
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   net/url.Parse
+         0     0% 95.15%      0.03s  0.91%                | net/url.parse
+----------------------------------------------------------|-------------
+                                             0.02s   100% |   io/ioutil.ReadFile
+         0     0% 95.15%      0.02s  0.61%                | os.(*File).Stat
+                                             0.02s   100% |   syscall.Syscall
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   io/ioutil.WriteFile
+         0     0% 95.15%      0.03s  0.91%                | os.(*File).Write
+                                             0.03s   100% |   os.(*File).write
+----------------------------------------------------------|-------------
+                                             0.03s   100% |   os.(*File).Write
+         0     0% 95.15%      0.03s  0.91%                | os.(*File).write
+----------------------------------------------------------|-------------
+                                             0.33s   100% |   io/ioutil.WriteFile
+         0     0% 95.15%      0.33s 10.00%                | os.OpenFile
+                                             0.33s   100% |   syscall.Syscall
+----------------------------------------------------------|-------------
+                                             0.17s   100% |   regexp.MustCompile
+         0     0% 95.15%      0.17s  5.15%                | regexp.Compile
+                                             0.02s   100% |   regexp/syntax.ranges.Less
+----------------------------------------------------------|-------------
+                                             0.16s   100% |   github.com/microcosm-cc/bluemonday.UGCPolicy
+         0     0% 95.15%      0.17s  5.15%                | regexp.MustCompile
+                                             0.17s   100% |   regexp.Compile
+----------------------------------------------------------|-------------
+```
