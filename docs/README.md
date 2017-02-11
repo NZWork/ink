@@ -448,3 +448,116 @@ time 197.314185ms
 parsing 492 files
 time 196.232665ms
 ```
+
+### 492 个文件转换分析
+
+```
+Showing top 80 nodes out of 161 (cum >= 0.90s)
+----------------------------------------------------------|-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context 	 	 
+----------------------------------------------------------|-------------
+                                             0.09s   100% |   bytes.(*Buffer).ReadFrom
+     3.10s 32.98% 32.98%      3.10s 32.98%                | syscall.Syscall
+----------------------------------------------------------|-------------
+                                             1.41s   100% |   runtime.systemstack
+     1.41s 15.00% 47.98%      1.41s 15.00%                | runtime.mach_semaphore_wait
+----------------------------------------------------------|-------------
+                                             0.90s   100% |   runtime.lock
+     1.33s 14.15% 62.13%      1.33s 14.15%                | runtime.usleep
+----------------------------------------------------------|-------------
+                                             0.26s 96.30% |   strings.IndexAny
+                                             0.01s  3.70% |   strings.Map
+     0.24s  2.55% 64.68%      0.27s  2.87%                | runtime.stringiter2
+----------------------------------------------------------|-------------
+                                             0.43s   100% |   golang.org/x/net/html.EscapeString
+     0.24s  2.55% 67.23%      0.50s  5.32%                | strings.IndexAny
+                                             0.26s   100% |   runtime.stringiter2
+----------------------------------------------------------|-------------
+                                             0.19s   100% |   runtime.systemstack
+     0.19s  2.02% 69.26%      0.19s  2.02%                | runtime.mach_semaphore_timedwait
+----------------------------------------------------------|-------------
+                                             0.31s 32.98% |   runtime.newobject
+                                             0.30s 31.91% |   runtime.makeslice
+                                             0.22s 23.40% |   runtime.rawstring
+                                             0.11s 11.70% |   runtime.growslice
+     0.19s  2.02% 71.28%      0.94s 10.00%                | runtime.mallocgc
+                                             0.07s   100% |   runtime.memclr
+----------------------------------------------------------|-------------
+                                             0.14s   100% |   golang.org/x/net/html.(*Tokenizer).Next
+     0.18s  1.91% 73.19%      0.18s  1.91%                | golang.org/x/net/html.(*Tokenizer).readByte
+----------------------------------------------------------|-------------
+     0.17s  1.81% 75.00%      0.17s  1.81%                | runtime.mach_semaphore_signal
+----------------------------------------------------------|-------------
+                                             0.03s 37.50% |   bytes.(*Buffer).Write
+                                             0.03s 37.50% |   bytes.(*Buffer).WriteString
+                                             0.01s 12.50% |   fmt.(*pp).doPrintf
+                                             0.01s 12.50% |   runtime.concatstrings
+     0.12s  1.28% 76.28%      0.12s  1.28%                | runtime.memmove
+----------------------------------------------------------|-------------
+                                             0.07s   100% |   runtime.mallocgc
+     0.11s  1.17% 77.45%      0.11s  1.17%                | runtime.memclr
+----------------------------------------------------------|-------------
+                                             0.07s   100% |   runtime.systemstack
+     0.10s  1.06% 78.51%      0.10s  1.06%                | nanotime
+----------------------------------------------------------|-------------
+                                             0.16s 81.11% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+                                             0.04s 18.89% |   golang.org/x/net/html.Token.tagString
+     0.08s  0.85% 79.36%      0.26s  2.77%                | bytes.(*Buffer).WriteString
+                                             0.15s 83.33% |   bytes.(*Buffer).grow
+                                             0.03s 16.67% |   runtime.memmove
+----------------------------------------------------------|-------------
+                                             0.04s 57.14% |   runtime.scanobject
+                                             0.03s 42.86% |   runtime.shade
+     0.08s  0.85% 80.21%      0.08s  0.85%                | runtime.heapBitsForObject
+----------------------------------------------------------|-------------
+                                             0.27s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+     0.07s  0.74% 80.96%      0.27s  2.87%                | golang.org/x/net/html.(*Tokenizer).Next
+                                             0.14s   100% |   golang.org/x/net/html.(*Tokenizer).readByte
+----------------------------------------------------------|-------------
+                                             0.07s 87.50% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+                                             0.01s 12.50% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+     0.07s  0.74% 81.70%      0.09s  0.96%                | runtime.mapaccess2_faststr
+----------------------------------------------------------|-------------
+                                             0.37s   100% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitize
+     0.06s  0.64% 82.34%      0.37s  3.94%                | golang.org/x/net/html.(*Tokenizer).Token
+                                             0.06s 35.29% |   golang.org/x/net/html.(*Tokenizer).TagName
+                                             0.06s 35.29% |   golang.org/x/net/html/atom.Lookup
+                                             0.03s 17.65% |   runtime.growslice
+                                             0.02s 11.76% |   runtime.duffcopy
+----------------------------------------------------------|-------------
+                                             0.06s   100% |   golang.org/x/net/html.(*Tokenizer).Token
+     0.06s  0.64% 82.98%      0.06s  0.64%                | golang.org/x/net/html/atom.Lookup
+----------------------------------------------------------|-------------
+                                             0.02s 66.67% |   golang.org/x/net/html.(*Tokenizer).Token
+                                             0.01s 33.33% |   github.com/microcosm-cc/bluemonday.(*Policy).sanitizeAttrs
+     0.06s  0.64% 83.62%      0.06s  0.64%                | runtime.duffcopy
+----------------------------------------------------------|-------------
+     0.06s  0.64% 84.26%      0.11s  1.17%                | runtime.scanobject
+                                             0.04s   100% |   runtime.heapBitsForObject
+----------------------------------------------------------|-------------
+                                             0.13s   100% |   golang.org/x/net/html.Token.String
+     0.05s  0.53% 84.79%      0.13s  1.38%                | runtime.concatstrings
+                                             0.07s 87.50% |   runtime.rawstringtmp
+                                             0.01s 12.50% |   runtime.memmove
+----------------------------------------------------------|-------------
+
+```
+
+## 第三次优化
+
+* 减少 channel 带来的锁
+
+### 优化结果
+```
+parsing 492 files
+time 210.924972ms
+neodeMacBook-Pro:ink neo$ ./ink
+parsing 492 files
+time 188.60070000000002ms
+neodeMacBook-Pro:ink neo$ ./ink
+parsing 492 files
+time 186.06235999999998ms
+neodeMacBook-Pro:ink neo$ ./ink
+parsing 492 files
+time 183.858968ms
+```
