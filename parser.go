@@ -18,9 +18,7 @@ func mdStream() {
 	//fmt.Printf("parsing %d files\n", len(files))
 
 	worker := runtime.NumCPU()
-	//runtime.GOMAXPROCS(worker)
-
-	worker = 20
+	runtime.GOMAXPROCS(worker)
 
 	rc := make(chan []byte, worker)
 	done := make(chan bool, len(files))
@@ -30,6 +28,7 @@ func mdStream() {
 	for i := 0; i < worker; i++ {
 		go mdParseStream(rc, done)
 	}
+
 	for i := 0; i < len(files); i++ {
 		<-done
 	}
@@ -44,8 +43,11 @@ func mdReadStream(files []string, readChan chan []byte) {
 }
 
 func mdParseStream(readChan chan []byte, done chan bool) {
-	for c := range readChan {
-		ioutil.WriteFile("test.html", bluemonday.UGCPolicy().SanitizeBytes(blackfriday.MarkdownCommon(c)), 0644)
-		done <- true
+	for {
+		select {
+		case c := <-readChan:
+			ioutil.WriteFile("test.html", bluemonday.UGCPolicy().SanitizeBytes(blackfriday.MarkdownCommon(c)), 0644)
+			done <- true
+		}
 	}
 }

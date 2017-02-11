@@ -415,3 +415,7 @@ Showing top 80 nodes out of 172 (cum >= 0.17s)
 
 ### 结论
 喂不饱，过多的等待
+
+## 第二次优化
+
+* 使用 sync.Mutex 代替 channel
