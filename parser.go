@@ -4,50 +4,50 @@ import (
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 
-	//"fmt"
+	"fmt"
 	"io/ioutil"
 	"path/filepath"
 	"runtime"
+	"sync"
 	//"time"
 )
 
 var rootPath = "test"
+var wg sync.WaitGroup
+var policy *bluemonday.Policy
 
 func mdStream() {
 	files, _ := filepath.Glob(filepath.Join(rootPath, "*.md"))
-	//fmt.Printf("parsing %d files\n", len(files))
+	fmt.Printf("parsing %d files\n", len(files))
+
+	policy = bluemonday.UGCPolicy()
 
 	worker := runtime.NumCPU()
 	runtime.GOMAXPROCS(worker)
 
-	rc := make(chan []byte, worker)
-	done := make(chan bool, len(files))
+	rc := make(chan *[]byte, worker)
 
-	go mdReadStream(files, rc)
-
-	for i := 0; i < worker; i++ {
-		go mdParseStream(rc, done)
-	}
-
-	for i := 0; i < len(files); i++ {
-		<-done
-	}
-
-}
-
-func mdReadStream(files []string, readChan chan []byte) {
 	for _, f := range files {
-		md, _ := ioutil.ReadFile(f)
-		readChan <- md
+		wg.Add(1)
+		go func(f *string) {
+			md, _ := ioutil.ReadFile(*f)
+			rc <- &md
+		}(&f)
 	}
+
+	for i := 0; i < worker*2; i++ {
+		go mdParseStream(rc)
+	}
+	wg.Wait()
 }
 
-func mdParseStream(readChan chan []byte, done chan bool) {
+func mdParseStream(readChan chan *[]byte) {
+	var c *[]uint8
 	for {
 		select {
-		case c := <-readChan:
-			ioutil.WriteFile("test.html", bluemonday.UGCPolicy().SanitizeBytes(blackfriday.MarkdownCommon(c)), 0644)
-			done <- true
+		case c = <-readChan:
+			ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownCommon(*c)), 0644)
+			wg.Done()
 		}
 	}
 }

@@ -419,3 +419,32 @@ Showing top 80 nodes out of 172 (cum >= 0.17s)
 ## 第二次优化
 
 * 使用 sync.Mutex 代替 channel
+* 减少 GC
+
+### 优化结果
+
+随着文件数增长，性能越好
+
+```
+
+parsing 123 files
+time 54.499284ms
+
+parsing 123 files
+time 68.931115ms
+
+parsing 123 files
+time 55.680802ms
+
+parsing 492 files
+time 221.63780400000002ms
+
+parsing 492 files
+time 233.301539ms
+
+parsing 492 files
+time 197.314185ms
+
+parsing 492 files
+time 196.232665ms
+```
