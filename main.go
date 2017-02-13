@@ -7,6 +7,6 @@ import (
 
 func main() {
 	start := time.Now().UnixNano()
-	mdStream()
+	mdStream("test")
 	fmt.Printf("time %vms\n", float64(time.Now().UnixNano()-start)/1000/1000)
 }

@@ -4,28 +4,25 @@ import (
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 
-	"fmt"
 	"io/ioutil"
-	//	"path/filepath"
-	//	"runtime"
+	"os"
 	"sync"
-	//"time"
 )
 
 var wg sync.WaitGroup
 
 var policy *bluemonday.Policy
 
-func mdStream() {
-	files, _ := ioutil.ReadDir("test")
-	fmt.Printf("parsing %d files\n", len(files))
-
+func mdStream(path string) {
+	files, _ := ioutil.ReadDir(path)
 	policy = bluemonday.UGCPolicy()
 
-	for _, f := range files {
+	var f os.FileInfo
+	path += "/"
+	for _, f = range files {
 		wg.Add(1)
 		go func(f string) {
-			md, _ := ioutil.ReadFile("test/" + f)
+			md, _ := ioutil.ReadFile(path + f)
 			mdParseStream(&md)
 		}(f.Name())
 	}
@@ -34,7 +31,5 @@ func mdStream() {
 
 func mdParseStream(c *[]byte) {
 	defer wg.Done()
-	//ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownCommon(*c)), 0644)
-	ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownBasic(*c)), 0644)
-
+	ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownCommon(*c)), 0644)
 }
