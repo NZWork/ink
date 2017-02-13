@@ -57,7 +57,7 @@
 
 <hr/>
 
-<p><del>删除线</del> <s>删除线（开启识别HTML标签时）</s>
+<p>~~删除线~~ <s>删除线（开启识别HTML标签时）</s>
 <em>斜体字</em>      <em>斜体字</em>
 <strong>粗体</strong>  <strong>粗体</strong>
 <strong><em>粗斜体</em></strong> <strong><em>粗斜体</em></strong></p>
@@ -125,47 +125,51 @@
 
 <h4>JS代码　</h4>
 
-<pre><code>function test(){
-	console.log(&#34;Hello world!&#34;);
-}
- 
-(function(){
+<p>```javascript
+function test(){
+    console.log(&#34;Hello world!&#34;);
+}</p>
+
+<p>(function(){
     var box = function(){
         return box.fn.init();
-    };
+    };</p>
 
-    box.prototype = box.fn = {
-        init : function(){
-            console.log(&#39;box.init()&#39;);
+<pre><code>box.prototype = box.fn = {
+    init : function(){
+        console.log(&#39;box.init()&#39;);
 
-			return this;
-        },
+        return this;
+    },
 
-		add : function(str){
-			alert(&#34;add&#34;, str);
+    add : function(str){
+        alert(&#34;add&#34;, str);
 
-			return this;
-		},
+        return this;
+    },
 
-		remove : function(str){
-			alert(&#34;remove&#34;, str);
+    remove : function(str){
+        alert(&#34;remove&#34;, str);
 
-			return this;
-		}
-    };
-    
-    box.fn.init.prototype = box.fn;
-    
-    window.box =box;
-})();
+        return this;
+    }
+};
 
-var testBox = box();
-testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
+box.fn.init.prototype = box.fn;
+
+window.box =box;
 </code></pre>
+
+<p>})();</p>
+
+<p>var testBox = box();
+testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
+```</p>
 
 <h4>HTML代码 HTML codes</h4>
 
-<pre><code>&lt;!DOCTYPE html&gt;
+<p><code>html
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;mate charest=&#34;utf-8&#34; /&gt;
@@ -175,7 +179,7 @@ testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
         &lt;h1&gt;Hello world!&lt;/h1&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
+</code></p>
 
 <h3>图片 Images</h3>
 
@@ -275,154 +279,38 @@ testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
 
 <h3>绘制表格 Tables</h3>
 
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th align="right">价格</th>
-<th align="center">数量</th>
-</tr>
-</thead>
+<p>| 项目        | 价格   |  数量  |
+| --------   | -----:  | :----:  |
+| 计算机      | $1600   |   5     |
+| 手机        |   $12   |   12   |
+| 管线        |    $1    |  234  |</p>
 
-<tbody>
-<tr>
-<td>计算机</td>
-<td align="right">$1600</td>
-<td align="center">5</td>
-</tr>
+<p>First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell</p>
 
-<tr>
-<td>手机</td>
-<td align="right">$12</td>
-<td align="center">12</td>
-</tr>
+<p>| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |</p>
 
-<tr>
-<td>管线</td>
-<td align="right">$1</td>
-<td align="center">234</td>
-</tr>
-</tbody>
-</table>
+<p>| Function name | Description                    |
+| ------------- | ------------------------------ |
+| <code>help()</code>      | Display the help window.       |
+| <code>destroy()</code>   | <strong>Destroy your computer!</strong>     |</p>
 
-<table>
-<thead>
-<tr>
-<th>First Header</th>
-<th>Second Header</th>
-</tr>
-</thead>
+<p>| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |</p>
 
-<tbody>
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th>First Header</th>
-<th>Second Header</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th>Function name</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>help()</code></td>
-<td>Display the help window.</td>
-</tr>
-
-<tr>
-<td><code>destroy()</code></td>
-<td><strong>Destroy your computer!</strong></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th align="left">Left-Aligned</th>
-<th align="center">Center Aligned</th>
-<th align="right">Right Aligned</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">col 3 is</td>
-<td align="center">some wordy text</td>
-<td align="right">$1600</td>
-</tr>
-
-<tr>
-<td align="left">col 2 is</td>
-<td align="center">centered</td>
-<td align="right">$12</td>
-</tr>
-
-<tr>
-<td align="left">zebra stripes</td>
-<td align="center">are neat</td>
-<td align="right">$1</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th align="right">Value</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Computer</td>
-<td align="right">$1600</td>
-</tr>
-
-<tr>
-<td>Phone</td>
-<td align="right">$12</td>
-</tr>
-
-<tr>
-<td>Pipe</td>
-<td align="right">$1</td>
-</tr>
-</tbody>
-</table>
+<p>| Item      | Value |
+| --------- | -----:|
+| Computer  | $1600 |
+| Phone     |   $12 |
+| Pipe      |    $1 |</p>
 
 <hr/>
 
@@ -472,14 +360,16 @@ testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
 
 <p>多行公式：</p>
 
-<pre><code>\displaystyle
+<p><code>math
+\displaystyle
 \left( \sum\_{k=1}^n a\_k b\_k \right)^2
 \leq
 \left( \sum\_{k=1}^n a\_k^2 \right)
 \left( \sum\_{k=1}^n b\_k^2 \right)
-</code></pre>
+</code></p>
 
-<pre><code>\displaystyle 
+<p><code>katex
+\displaystyle 
     \frac{1}{
         \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
         \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
@@ -488,31 +378,34 @@ testBox.add(&#34;jQuery&#34;).remove(&#34;jQuery&#34;);
          {1+\cdots} }
         } 
     }
-</code></pre>
+</code></p>
 
-<pre><code>f(x) = \int_{-\infty}^\infty
+<p><code>latex
+f(x) = \int_{-\infty}^\infty
     \hat f(\xi)\,e^{2 \pi i \xi x}
     \,d\xi
-</code></pre>
+</code></p>
 
 <h3>绘制流程图 Flowchart</h3>
 
-<pre><code>st=&gt;start: 用户登陆
+<p>```flow
+st=&gt;start: 用户登陆
 op=&gt;operation: 登陆操作
 cond=&gt;condition: 登陆成功 Yes or No?
-e=&gt;end: 进入后台
+e=&gt;end: 进入后台</p>
 
-st-&gt;op-&gt;cond
+<p>st-&gt;op-&gt;cond
 cond(yes)-&gt;e
 cond(no)-&gt;op
-</code></pre>
+```</p>
 
 <h3>绘制序列图 Sequence Diagram</h3>
 
-<pre><code>Andrew-&gt;China: Says Hello 
+<p><code>seq
+Andrew-&gt;China: Says Hello 
 Note right of China: China thinks\nabout it 
 China--&gt;Andrew: How are you? 
 Andrew-&gt;&gt;China: I am good thanks!
-</code></pre>
+</code></p>
 
 <h3>End</h3>

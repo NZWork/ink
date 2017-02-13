@@ -13,6 +13,7 @@ import (
 )
 
 var wg sync.WaitGroup
+
 var policy *bluemonday.Policy
 
 func mdStream() {
@@ -33,6 +34,7 @@ func mdStream() {
 
 func mdParseStream(c *[]byte) {
 	defer wg.Done()
-	ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownCommon(*c)), 0644)
+	//ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownCommon(*c)), 0644)
+	ioutil.WriteFile("test.html", policy.SanitizeBytes(blackfriday.MarkdownBasic(*c)), 0644)
 
 }
