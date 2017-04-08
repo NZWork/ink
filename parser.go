@@ -11,11 +11,10 @@ import (
 
 var wg sync.WaitGroup
 
-var policy *bluemonday.Policy
+var policy = bluemonday.UGCPolicy()
 
 func mdStream(path string) {
 	files, _ := ioutil.ReadDir(path)
-	policy = bluemonday.UGCPolicy()
 
 	var f os.FileInfo
 	path += "/"

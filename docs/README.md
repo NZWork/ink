@@ -3,6 +3,14 @@
 ink 是 tiki的核心底层服务，负责用户 markdown 文件转换（ markdown => HTML）
 
 # 大体构思
+## 工作结构
+
+master:worker => 1:n
+
+## Master Worker 连接选型
+
+`MQ` `RPC`
+
 ## markdown源文件结构
 单层文件结构，通过 Hash 进行索引查找，每个仓库均为一个独立的 wiki 项目，源文件存储在仓库的 `markdown` 目录下
 
@@ -568,47 +576,47 @@ time 183.858968ms
 
 ### 优化结果
 ```
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 171.346057ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 178.415718ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 158.84637ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 173.826369ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 181.290882ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 159.058857ms
 ```
 
 ### 优化结果
 ```
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 166.6263ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 179.101538ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 170.17852299999998ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 169.913514ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 190.60826ms
-neodeMacBook-Pro:ink neo$ ./ink 
+neodeMacBook-Pro:ink neo$ ./ink
 parsing 500 files
 time 168.667486ms
-neodeMacBook-Pro:ink neo$ 
+neodeMacBook-Pro:ink neo$
 
 ```
 
