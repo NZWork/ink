@@ -1,11 +1,14 @@
 package worker
 
-import "io/ioutil"
+import (
+	"ink/public"
+	"io/ioutil"
+)
 
-func readFile(file string) ([]byte, error) {
-	return ioutil.ReadFile(repo + "/origin/" + file)
+func readFile(repo, file string) ([]byte, error) {
+	return ioutil.ReadFile(public.GetRepoOriginPath(repo) + file)
 }
 
-func writeFile(content []byte, file string) {
-	ioutil.WriteFile(repo+"/parsed/"+file, content, 0644)
+func writeFile(repo, file string, content []byte) {
+	ioutil.WriteFile(public.GetRepoParsedPath(repo)+file, content, 0644)
 }
