@@ -7,7 +7,7 @@ docker rm -f tiki_ink_worker1
 
 
 # Run a new master
-docker run -d -v /home/neo/docker/data/jay/wwwroot/tiki/public/store:/tiki -p 30006:8080 --name tiki_ink_master tiki_ink /go/bin/ink -m
+docker run -d -v /home/neo/docker/data/jay/wwwroot/tiki/public/store:/tiki -p 30007:8080 --name tiki_ink_master tiki_ink /go/bin/ink -m
 
 # Run two workers
 docker run -d -v /home/neo/docker/data/jay/wwwroot/tiki/public/store:/tiki --name tiki_ink_worker0 tiki_ink
