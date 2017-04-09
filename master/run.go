@@ -32,9 +32,9 @@ func taskHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	fmt.Println(string(requestDump))
-	repo := r.PostFormValue("repo")
+	repo := r.FormValue("repo")
 
-	if r.PostFormValue("auth") == public.APIKey && repo != "" {
+	if r.FormValue("auth") == public.APIKey && repo != "" {
 		files, tasks, responseTime := newTask(repo)
 		log.Printf("[%s] %d files cost %f ms to parse using %d tasks", repo, files, responseTime, tasks)
 		fmt.Fprintf(w, ParsedSuccess, repo, files, responseTime)
