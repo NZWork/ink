@@ -3,13 +3,12 @@ package master
 import (
 	"ink/public"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"github.com/streadway/amqp"
 )
 
-func taskGenrator(repo string) []public.Task {
+func taskGenrator(repo string) ([]public.Task, int) {
 	var tasks = []public.Task{}
 	// read file and pack
 	files, _ := ioutil.ReadDir(public.GetRepoOriginPath(repo))
@@ -18,7 +17,6 @@ func taskGenrator(repo string) []public.Task {
 		Repo:  repo,
 		Files: []string{},
 	}
-	log.Printf("[%s] %d files in total", repo, len(files))
 
 	for _, f = range files {
 		if len(task.Files) > MaxWorkPerTask {
@@ -34,17 +32,17 @@ func taskGenrator(repo string) []public.Task {
 	}
 	tasks = append(tasks, task)
 
-	return tasks
+	return tasks, len(files)
 }
 
-func newTask(repo string) {
+func newTask(repo string) (int, int, float64) {
 	var (
 		err  error
 		body []byte
 		task public.Task
 	)
 	startTime := public.TimerStart()
-	tasks := taskGenrator(repo)
+	tasks, fileCount := taskGenrator(repo)
 
 	for _, task = range tasks {
 		body, _ = task.JSON()
@@ -59,8 +57,7 @@ func newTask(repo string) {
 				Body:         body,
 			})
 		failOnError(err, "failed to publish a task")
-		log.Printf("[%s] sent %s", repo, body)
 	}
-	log.Printf("[%s] cost %f ms", repo, public.TimerStop(startTime))
 
+	return fileCount, len(tasks), public.TimerStop(startTime)
 }
