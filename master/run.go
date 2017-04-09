@@ -26,6 +26,7 @@ func Close() {
 func taskHandler(w http.ResponseWriter, r *http.Request) {
 	// newTask("test")
 	r.ParseForm()
+	log.Println(r.PostForm.Encode())
 	repo := r.PostFormValue("repo")
 
 	if r.PostFormValue("auth") == public.APIKey && repo != "" {
