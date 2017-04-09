@@ -1,6 +1,9 @@
 package public
 
-import "log"
+import (
+	"log"
+	"time"
+)
 
 func GetRealPathByRepo(repo string) string {
 	return WorkDir + repo
@@ -18,4 +21,12 @@ func failOnError(err error, msg string) {
 	if err != nil {
 		log.Fatalf("%s: %s", msg, err)
 	}
+}
+
+func TimerStart() int64 {
+	return time.Now().UnixNano()
+}
+
+func TimerStop(start int64) float64 {
+	return float64(time.Now().UnixNano()-start) / 1000.0 / 1000.0
 }

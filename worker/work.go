@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"ink/public"
 	"log"
+
+	"github.com/streadway/amqp"
 )
 
 func failOnError(err error, msg string) {
@@ -19,7 +21,7 @@ func work() {
 		0,         // prefetch size
 		false,     // global
 	)
-	failOnError(err, "Failed to set QoS")
+	failOnError(err, "failed to set QoS")
 
 	msgs, err := public.MQChannel.Consume(
 		public.MQQueue.Name, // queue
@@ -30,21 +32,28 @@ func work() {
 		false,               // no-wait
 		nil,                 // args
 	)
-	failOnError(err, "Failed to register a consumer")
+	failOnError(err, "failed to register a consumer")
 
 	forever := make(chan bool)
 
 	go func() {
-		for d := range msgs {
-			log.Printf("Received a message: %s", d.Body)
+		var (
+			d         amqp.Delivery
+			task      *public.Task
+			startTime int64
+		)
+
+		for d = range msgs {
+			log.Printf("received task: %s", d.Body)
+			startTime = public.TimerStart()
 			d.Ack(false)
-			task := &public.Task{}
+			task = &public.Task{}
 			json.Unmarshal(d.Body, task)
 			mdStream(task)
-			log.Println("Done", task.Debug())
+			log.Printf("task done: %s, cost %f ms", d.Body, public.TimerStop(startTime))
 		}
 	}()
 
-	log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
+	log.Printf("worker has ready to work")
 	<-forever
 }

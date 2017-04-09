@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"time"
 
 	"github.com/streadway/amqp"
 )
@@ -44,7 +43,7 @@ func newTask(repo string) {
 		body []byte
 		task public.Task
 	)
-	startTime := time.Now().UnixNano()
+	startTime := public.TimerStart()
 	tasks := taskGenrator(repo)
 
 	for _, task = range tasks {
@@ -62,6 +61,6 @@ func newTask(repo string) {
 		failOnError(err, "failed to publish a task")
 		log.Printf("[%s] sent %s", repo, body)
 	}
-	log.Printf("[%s] cost %f ms", repo, float64(time.Now().UnixNano()-startTime)/1000.0/1000.0)
+	log.Printf("[%s] cost %f ms", repo, public.TimerStop(startTime))
 
 }
