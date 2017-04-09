@@ -26,9 +26,9 @@ func Close() {
 func taskHandler(w http.ResponseWriter, r *http.Request) {
 	// newTask("test")
 	r.ParseForm()
-	repo := r.FormValue("repo")
+	repo := r.PostFormValue("repo")
 
-	if r.FormValue("auth") == "shabiliuwenjie" && repo != "" {
+	if r.PostFormValue("auth") == "shabiliuwenjie" && repo != "" {
 		files, tasks, responseTime := newTask(repo)
 		log.Printf("[%s] %d files cost %f ms to parse using %d tasks", repo, files, responseTime, tasks)
 		fmt.Fprintf(w, ParsedSuccess, repo, files, responseTime)
