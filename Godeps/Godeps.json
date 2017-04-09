@@ -1,0 +1,32 @@
+{
+	"ImportPath": "ink",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/microcosm-cc/bluemonday",
+			"Rev": "e79763773ab6222ca1d5a7cbd9d62d83c1f77081"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.4-40-g5f33e7b",
+			"Rev": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
+			"Rev": "1dba4b3954bc059efc3991ec364f9f9a35f597d2"
+		},
+		{
+			"ImportPath": "github.com/streadway/amqp",
+			"Rev": "afe8eee29a74d213b1f3fb2586058157c397da60"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "f4fe4abe3c785295ddf81c7f1823bcd3bad391b6"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "f4fe4abe3c785295ddf81c7f1823bcd3bad391b6"
+		}
+	]
+}
