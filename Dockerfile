@@ -10,4 +10,4 @@ RUN go install ink
 
 EXPOSE 8080
 
-ENTRYPOINT /go/bin/ink
+RUN cp /go/bin/ink /bin/ink

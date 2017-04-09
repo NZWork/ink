@@ -44,6 +44,10 @@ func newTask(repo string) (int, int, float64) {
 	startTime := public.TimerStart()
 	tasks, fileCount := taskGenrator(repo)
 
+	if fileCount == 0 {
+		return fileCount, len(tasks), public.TimerStop(startTime)
+	}
+
 	for _, task = range tasks {
 		body, _ = task.JSON()
 		err = public.MQChannel.Publish(

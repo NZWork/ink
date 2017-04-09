@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-const InvalidAction = `{"stat": 0, "err_msg": "invalid action"}\n`
-const ParsedSuccess = `{"stat": 1, "repo_id": %s, "files": %d, "response_time": %f}\n`
+const InvalidAction = `{"stat": 0, "err_msg": "invalid action"}`
+const ParsedSuccess = `{"stat": 1, "repo_id": %s, "files": %d, "response_time": %f}`
 
 func Run() {
 	log.Println("running as master")
@@ -28,7 +28,7 @@ func taskHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	repo := r.PostFormValue("repo")
 
-	if r.PostFormValue("auth") == "shabiliuwenjie" && repo != "" {
+	if r.PostFormValue("auth") == public.APIKey && repo != "" {
 		files, tasks, responseTime := newTask(repo)
 		log.Printf("[%s] %d files cost %f ms to parse using %d tasks", repo, files, responseTime, tasks)
 		fmt.Fprintf(w, ParsedSuccess, repo, files, responseTime)
