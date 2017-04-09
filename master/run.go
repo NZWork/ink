@@ -5,6 +5,7 @@ import (
 	"ink/public"
 	"log"
 	"net/http"
+	"net/http/httputil"
 )
 
 const InvalidAction = `{"stat": 0, "err_msg": "invalid action"}`
@@ -26,7 +27,11 @@ func Close() {
 func taskHandler(w http.ResponseWriter, r *http.Request) {
 	// newTask("test")
 	r.ParseForm()
-	log.Println(r.PostForm.Encode())
+	requestDump, err := httputil.DumpRequest(r, true)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(requestDump))
 	repo := r.PostFormValue("repo")
 
 	if r.PostFormValue("auth") == public.APIKey && repo != "" {
