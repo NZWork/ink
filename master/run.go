@@ -5,7 +5,6 @@ import (
 	"ink/public"
 	"log"
 	"net/http"
-	"net/http/httputil"
 )
 
 const InvalidAction = `{"stat": 0, "err_msg": "invalid action"}`
@@ -27,14 +26,9 @@ func Close() {
 func taskHandler(w http.ResponseWriter, r *http.Request) {
 	// newTask("test")
 	r.ParseForm()
-	requestDump, err := httputil.DumpRequest(r, true)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(requestDump))
-	repo := r.FormValue("repo")
+	repo := r.Form["repo"][0]
 
-	if r.FormValue("auth") == public.APIKey && repo != "" {
+	if r.Form["auth"][0] == public.APIKey && repo != "" {
 		files, tasks, responseTime := newTask(repo)
 		log.Printf("[%s] %d files cost %f ms to parse using %d tasks", repo, files, responseTime, tasks)
 		fmt.Fprintf(w, ParsedSuccess, repo, files, responseTime)
