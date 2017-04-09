@@ -1,12 +1,17 @@
 package worker
 
-import "log"
+import (
+	"ink/public"
+	"log"
+)
 
 func Run() {
 	log.Println("Running as worker")
-	listenMQ()
+	public.MQConnect()
+	work()
 }
 
 func Close() {
+	public.MQClose()
 	log.Println("worker closed")
 }
