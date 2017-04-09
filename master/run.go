@@ -24,13 +24,9 @@ func Close() {
 }
 
 func taskHandler(w http.ResponseWriter, r *http.Request) {
-	// newTask("test")
-	r.ParseForm()
-	log.Printf("%v\n", r.Form.Encode())
-	log.Println(r.FormValue("auth"))
-	repo := r.Form["repo"][0]
+	repo := r.FormValue("repo")
 
-	if r.Form["auth"][0] == public.APIKey && repo != "" {
+	if r.FormValue("auth") == public.APIKey && repo != "" {
 		files, tasks, responseTime := newTask(repo)
 		log.Printf("[%s] %d files cost %f ms to parse using %d tasks", repo, files, responseTime, tasks)
 		fmt.Fprintf(w, ParsedSuccess, repo, files, responseTime)
