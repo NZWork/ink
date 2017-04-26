@@ -24,13 +24,13 @@ func work() {
 	failOnError(err, "failed to set QoS")
 
 	msgs, err := public.MQChannel.Consume(
-		public.MQQueue.Name, // queue
-		"",                  // consumer
-		false,               // auto-ack
-		false,               // exclusive
-		false,               // no-local
-		false,               // no-wait
-		nil,                 // args
+		public.QueueName, // queue
+		"",               // consumer
+		false,            // auto-ack
+		false,            // exclusive
+		false,            // no-local
+		false,            // no-wait
+		nil,              // args
 	)
 	failOnError(err, "failed to register a consumer")
 
